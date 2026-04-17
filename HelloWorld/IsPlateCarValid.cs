@@ -11,6 +11,10 @@ public class IsPlateCarValid
 {
     public bool GetIsPlateCarValid(string plateNumber)
     {
+        if (plateNumber.Length != 7)
+        {
+            return false;
+        }
         var alphabeticPart = plateNumber.Substring(0, 3);
         foreach (char c in alphabeticPart)
         {
