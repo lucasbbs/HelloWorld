@@ -3,10 +3,7 @@
 namespace HelloWorld;
 class Program
 {
-
-
-    static void Main()
-    {
+    static void GetWelcomeMessage() {
         while (true)
         {
             Console.Write("Digite seu nome: ");
@@ -19,26 +16,30 @@ class Program
                 break;
             }
         }
+    }
 
+    static void GetListNames()
+    {
         while (true)
         {
             Console.Write("Digite seu primeiro e último nome: ");
             var input = Console.ReadLine();
             if (string.IsNullOrEmpty(input))
                 continue;
-            var names = input.Split(" ");
-            var listNames = new List<string>();
-            foreach (var name in names)
-            {
-                listNames.Add(name);
-            }
+
+            var listNames = new ListNames();
+            var providedNames = listNames.GetListNames(input);
+
             Console.Write("Nome informado: ");
             Console.WriteLine(
-                string.Join(" ", listNames)
+                string.Join(" ", providedNames)
                 );
             break;
         }
+    }
 
+    static void GetCharacterCount()
+    {
         string sentence;
         do
         {
@@ -56,8 +57,10 @@ class Program
                 string.Join(" ", countLettersPerWord.Counts)
                 );
         } while (!string.IsNullOrEmpty(sentence));
+    }
 
-
+    static void GetIsPlateValid()
+    {
         Console.Write("Digite uma placa de carro brasileira válida até 2018: ");
         var plate = Console.ReadLine();
         var isPlateCarValid = new IsPlateCarValid();
@@ -66,16 +69,10 @@ class Program
             Console.WriteLine("Verdadeiro");
         else
             Console.WriteLine("Falso");
+    }
 
-        /*
-        5. Crie um programa que solicita ao usuário a exibição da data atual em diferentes formatos:
-            - Formato completo (dia da semana, dia do mês, mês, ano, hora, minutos, segundos).
-            - Apenas a data no formato "01/03/2024".
-            - Apenas a hora no formato de 24 horas.
-            - A data com o mês por extenso.
-         */
-
-
+    static void GetDateFormat()
+    {
         DateFormat? formatOption = null;
 
         do
@@ -118,7 +115,15 @@ class Program
             Console.WriteLine(ShowDate.GetDate(formatOption.Value));
 
         } while (true);
+    }
 
+    static void Main()
+    {
+        GetWelcomeMessage();
+        GetListNames();
+        GetCharacterCount();
+        GetIsPlateValid();
+        GetDateFormat();
     }
 
 
